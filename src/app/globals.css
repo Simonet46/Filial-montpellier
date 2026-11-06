@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+/*
+ * Identidad visual
+ * - Azul y naranja: colores del Montpellier Handball.
+ * - Celeste y sol: guiño a Argentina.
+ * Si el club comparte su kit de marca oficial, alcanza con ajustar estos tokens
+ * y las fuentes en src/app/fonts.ts.
+ */
+@theme {
+  --color-ink: #040815;
+  --color-night: #081028;
+  --color-panel: #0c1736;
+  --color-line: rgb(120 150 255 / 0.14);
+
+  --color-mhb-blue: #1b4dff;
+  --color-mhb-blue-light: #5b85ff;
+  --color-mhb-blue-deep: #0a2a8f;
+  --color-mhb-orange: #ff6a13;
+  --color-mhb-orange-light: #ff9150;
+
+  --color-celeste: #74acdf;
+  --color-sol: #f6b40e;
+
+  --color-text: #e8edff;
+  --color-muted: #8d9ac2;
+
+  --font-display: var(--font-barlow-condensed), "Arial Narrow", sans-serif;
+  --font-sans: var(--font-barlow), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --animate-pulse-glow: pulse-glow 3s ease-in-out infinite;
+  --animate-scan: scan 6s linear infinite;
+  --animate-rise: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
+  }
+  @keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: var(--color-ink);
+  color: var(--color-text);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-image:
+    radial-gradient(1200px 600px at 85% -10%, rgb(27 77 255 / 0.18), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgb(255 106 19 / 0.10), transparent 60%);
+  background-attachment: fixed;
+}
+
+@layer components {
+/* Grilla HUD de fondo */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(120 150 255 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(120 150 255 / 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.glass {
+  background: linear-gradient(160deg, rgb(20 34 80 / 0.55), rgb(8 16 40 / 0.55));
+  border: 1px solid var(--color-line);
+  backdrop-filter: blur(14px);
+}
+
+/* Esquinas tipo visor */
+.hud {
+  position: relative;
+}
+.hud::before,
+.hud::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  border-color: var(--color-mhb-orange);
+  opacity: 0.8;
+}
+.hud::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+.hud::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+}
+
+.text-gradient-orange {
+  background: linear-gradient(90deg, var(--color-mhb-orange), var(--color-sol));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-blue {
+  background: linear-gradient(90deg, var(--color-mhb-blue-light), var(--color-celeste));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Franja argentina: celeste · blanco · celeste */
+.arg-stripe {
+  background: linear-gradient(
+    90deg,
+    var(--color-celeste) 0 33.3%,
+    #ffffff 33.3% 66.6%,
+    var(--color-celeste) 66.6% 100%
+  );
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* Inputs */
+.field {
+  width: 100%;
+  border-radius: 0.6rem;
+  border: 1px solid var(--color-line);
+  background: rgb(4 8 21 / 0.6);
+  padding: 0.6rem 0.8rem;
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.field:focus {
+  border-color: var(--color-mhb-blue-light);
+  box-shadow: 0 0 0 3px rgb(27 77 255 / 0.25);
+}
+.field::placeholder {
+  color: rgb(141 154 194 / 0.6);
+}
+select.field {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--color-muted) 50%),
+    linear-gradient(135deg, var(--color-muted) 50%, transparent 50%);
+  background-position: calc(100% - 16px) 50%, calc(100% - 11px) 50%;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 2rem;
+}
+select.field option {
+  background: var(--color-night);
+}
+input[type="date"].field::-webkit-calendar-picker-indicator {
+  filter: invert(0.8);
+}
+
+input[type="range"].slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-mhb-blue), var(--color-mhb-orange));
+  outline: none;
+}
+input[type="range"].slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgb(255 106 19 / 0.35);
+  cursor: pointer;
+}
+input[type="range"].slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgb(255 106 19 / 0.35);
+  cursor: pointer;
+}
+}
+
+::selection {
+  background: rgb(255 106 19 / 0.35);
+}
+
+/* Scrollbar discreta */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(120 150 255 / 0.25) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
