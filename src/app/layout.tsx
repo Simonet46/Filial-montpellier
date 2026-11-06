@@ -1,28 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { getI18n } from "@/lib/i18n";
-import { barlow, barlowCondensed, jetbrains } from "./fonts";
+import { display, dmSans } from "./fonts";
+import { Providers } from "./providers";
 import "./globals.css";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const { t } = await getI18n();
-  return {
-    title: { default: `${t.brand.filial} · ${t.brand.club}`, template: `%s · ${t.brand.filial}` },
-    description: t.brand.tagline,
-  };
-}
-
-export const viewport: Viewport = {
-  themeColor: "#040815",
+export const metadata: Metadata = {
+  title: "Filial Argentina · Montpellier Handball",
+  description:
+    "Proyecto de detección y formación de talentos en Argentina para el Montpellier Handball. Propuesta de DS CONNECT.",
 };
 
-export default async function RootLayout({ children }: LayoutProps<"/">) {
-  const { locale } = await getI18n();
+export const viewport: Viewport = {
+  themeColor: "#001025",
+};
+
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang={locale}
-      className={`${barlowCondensed.variable} ${barlow.variable} ${jetbrains.variable} h-full antialiased`}
-    >
-      <body className="min-h-full">{children}</body>
+    <html lang="es" className={`${dmSans.variable} ${display.variable} h-full antialiased`}>
+      <body className="min-h-full">
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

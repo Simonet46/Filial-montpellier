@@ -1,10 +1,13 @@
 "use client";
 
 import { useActionState, useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { Trash2 } from "lucide-react";
-import { deleteSession, saveSession } from "@/lib/actions/trainings";
 import type { Dictionary } from "@/lib/i18n/es";
-import type { Player, TrainingSession } from "@/lib/types";
+import { deleteSession, saveSession } from "@/lib/mutations";
+import { routes } from "@/lib/routes";
+import { useUser } from "@/lib/session";
+import type { ActionState, Player, TrainingSession } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { FormMessage, FormSection, SubmitButton } from "./form-bits";
 import { Button, FormField, LinkButton } from "./ui";
@@ -18,7 +21,13 @@ export function SessionForm({
   session?: TrainingSession | null;
   players: Pick<Player, "id" | "first_name" | "last_name" | "position">[];
 }) {
-  const [state, action] = useActionState(saveSession, null);
+  const user = useUser();
+  const router = useRouter();
+  const [state, action] = useActionState(async (_prev: ActionState, form: FormData) => {
+    const res = await saveSession(user, t, form);
+    if (res?.ok && res.id) router.push(routes.training(res.id));
+    return res;
+  }, null);
   const [attendees, setAttendees] = useState<string[]>(session?.attendee_ids ?? []);
   const f = t.trainings.fields;
   const toggle = (id: string) =>
@@ -77,7 +86,7 @@ export function SessionForm({
               <span className="flex-1">
                 {p.first_name} {p.last_name}
               </span>
-              <span className="font-mono text-xs text-muted">{t.positionsShort[p.position]}</span>
+              <span className="font-sans text-xs text-muted">{t.positionsShort[p.position]}</span>
             </label>
           ))}
         </div>
@@ -85,7 +94,7 @@ export function SessionForm({
 
       <FormMessage state={state} />
       <div className="flex flex-wrap justify-end gap-2">
-        <LinkButton href={session ? `/trainings/${session.id}` : "/trainings"} variant="ghost">
+        <LinkButton href={session ? routes.training(session.id) : routes.trainings} variant="ghost">
           {t.common.cancel}
         </LinkButton>
         <SubmitButton pendingLabel={t.common.saving}>{t.common.save}</SubmitButton>
@@ -95,6 +104,8 @@ export function SessionForm({
 }
 
 export function DeleteSessionButton({ id, t }: { id: string; t: Dictionary }) {
+  const user = useUser();
+  const router = useRouter();
   const [pending, start] = useTransition();
   return (
     <Button
@@ -103,7 +114,8 @@ export function DeleteSessionButton({ id, t }: { id: string; t: Dictionary }) {
       onClick={() => {
         if (confirm(t.common.confirmDelete))
           start(async () => {
-            await deleteSession(id);
+            const res = await deleteSession(user, t, id);
+            if (res?.ok) router.push(routes.trainings);
           });
       }}
     >

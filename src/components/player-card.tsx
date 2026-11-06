@@ -4,6 +4,7 @@ import type { Dictionary } from "@/lib/i18n/es";
 import type { Locale, PlayerStatus, PlayerSummary } from "@/lib/types";
 import { cn, countryName } from "@/lib/utils";
 import { EU_COUNTRIES } from "@/lib/constants";
+import { routes } from "@/lib/routes";
 import { Badge } from "./ui";
 import { Avatar, RatingHex } from "./visuals";
 
@@ -61,17 +62,17 @@ export function PlayerCard({
   return (
     <div
       className={cn(
-        "glass group relative overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-0.5 hover:border-mhb-blue-light/50 hover:shadow-[0_10px_40px_-12px_rgb(27_77_255/0.5)]",
+        "glass group relative overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-0.5 hover:border-mhb-blue-light/50 hover:shadow-[0_10px_40px_-12px_rgb(0_122_193/0.5)]",
         selected && "border-mhb-orange/70 shadow-[0_0_0_1px_var(--color-mhb-orange)]",
       )}
     >
       <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-mhb-blue/20 blur-2xl transition group-hover:bg-mhb-orange/20" />
-      <Link href={`/players/${p.id}`} className="relative block p-4">
+      <Link href={routes.player(p.id)} className="relative block p-4">
         <div className="flex items-start gap-3">
           <Avatar first={p.first_name} last={p.last_name} url={p.photo_url} />
           <div className="min-w-0 flex-1">
             <p className="label truncate">{p.club}</p>
-            <h3 className="truncate font-display text-2xl font-bold uppercase italic leading-tight">
+            <h3 className="truncate font-display text-2xl font-bold uppercase leading-tight">
               {p.first_name} <span className="text-gradient-blue">{p.last_name}</span>
             </h3>
             <div className="mt-1 flex flex-wrap gap-1.5">
@@ -106,13 +107,13 @@ export function PlayerCard({
       </Link>
 
       <div className="relative flex items-center justify-between border-t border-line px-4 py-2 text-xs text-muted">
-        <span className="font-mono uppercase tracking-wider">
+        <span className="font-sans uppercase tracking-wider">
           {p.video_count} {t.players.videosCount}
         </span>
         <div className="flex items-center gap-3">
           {p.favorite && <Star className="h-4 w-4 fill-sol text-sol" aria-label={t.players.favorite} />}
           {selectable && (
-            <label className="flex cursor-pointer items-center gap-1.5 font-mono uppercase tracking-wider hover:text-text">
+            <label className="flex cursor-pointer items-center gap-1.5 font-sans uppercase tracking-wider hover:text-text">
               <input
                 type="checkbox"
                 checked={selected}

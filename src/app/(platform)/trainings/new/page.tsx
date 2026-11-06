@@ -1,19 +1,11 @@
-import { redirect } from "next/navigation";
-import { SessionForm } from "@/components/session-form";
-import { PageHeader } from "@/components/ui";
-import { canEdit, requireUser } from "@/lib/auth";
-import { repo } from "@/lib/data";
-import { getI18n } from "@/lib/i18n";
+import { Suspense } from "react";
+import { PageLoading } from "@/components/ui";
+import { NewTrainingView } from "@/views/training-edit";
 
-export default async function NewTrainingPage() {
-  const user = await requireUser();
-  if (!canEdit(user.role)) redirect("/trainings");
-  const { t } = await getI18n();
-  const players = (await repo.listPlayers()).filter((p) => p.status !== "inactive");
+export default function Page() {
   return (
-    <>
-      <PageHeader kicker={t.trainings.title} title={t.trainings.newTitle} />
-      <SessionForm t={t} players={players} />
-    </>
+    <Suspense fallback={<PageLoading />}>
+      <NewTrainingView />
+    </Suspense>
   );
 }

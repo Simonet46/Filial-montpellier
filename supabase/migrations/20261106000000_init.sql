@@ -301,26 +301,6 @@ create policy "trials: staff actualiza" on public.trials
 create policy "trials: admin elimina" on public.trials
   for delete to authenticated using ((select public.is_admin()));
 
--- Cifras agregadas para la portada pública (sin datos personales).
-create or replace function public.public_stats()
-returns json
-language sql stable security definer set search_path = ''
-as $$
-  select json_build_object(
-    'players', (select count(*) from public.players where status <> 'inactive'),
-    'sessions', (select count(*) from public.training_sessions where date <= current_date),
-    'videos', (select count(*) from public.videos),
-    'eu', (
-      select count(*) from public.players
-       where status <> 'inactive'
-         and passports && array['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE',
-                                'IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE']
-    )
-  )
-$$;
-revoke execute on function public.public_stats() from public;
-grant execute on function public.public_stats() to anon, authenticated;
-
 -- ---------- Storage (privado, URLs firmadas) ---------------------------------
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values

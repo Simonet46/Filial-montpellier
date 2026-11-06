@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { X } from "lucide-react";
 import { MAX_COMPARE } from "@/lib/constants";
 import type { Dictionary } from "@/lib/i18n/es";
+import { routes } from "@/lib/routes";
 
 export function ComparePicker({
   options,
@@ -15,7 +16,7 @@ export function ComparePicker({
   t: Dictionary;
 }) {
   const router = useRouter();
-  const go = (ids: string[]) => router.push(ids.length ? `/compare?ids=${ids.join(",")}` : "/compare");
+  const go = (ids: string[]) => router.push(routes.compare(ids));
   return (
     <div className="flex flex-wrap items-center gap-2">
       {selected.map((id) => {

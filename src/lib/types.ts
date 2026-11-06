@@ -152,4 +152,4 @@ export interface PlayerSummary extends Player {
   age: number;
 }
 
-export type ActionState = { error?: string; ok?: boolean } | null;
+export type ActionState = { error?: string; ok?: boolean; id?: string } | null;

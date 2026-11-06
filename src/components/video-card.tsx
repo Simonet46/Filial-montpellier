@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useTransition } from "react";
+import { useState, useTransition, type TransitionStartFunction } from "react";
 import { ExternalLink, Play, Trash2 } from "lucide-react";
-import { deleteVideo } from "@/lib/actions/videos";
 import type { PlayableVideo } from "@/lib/data";
 import type { Dictionary } from "@/lib/i18n/es";
+import { deleteVideo } from "@/lib/mutations";
+import { routes } from "@/lib/routes";
+import { useUser } from "@/lib/session";
 import type { Locale } from "@/lib/types";
 import { cn, formatDate, parseVideoUrl } from "@/lib/utils";
 import { Badge } from "./ui";
@@ -72,8 +74,8 @@ export function VideoCard({
               <svg viewBox="0 0 160 90" className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
                 <defs>
                   <linearGradient id={`vg-${video.id}`} x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stopColor="#0a2a8f" />
-                    <stop offset="1" stopColor="#040815" />
+                    <stop offset="0" stopColor="#1a365d" />
+                    <stop offset="1" stopColor="#001025" />
                   </linearGradient>
                 </defs>
                 <rect width="160" height="90" fill={`url(#vg-${video.id})`} />
@@ -85,7 +87,7 @@ export function VideoCard({
                   <path d="M4 15 A40 40 0 0 1 44 45 A40 40 0 0 1 4 75" strokeDasharray="3 3" />
                   <path d="M156 15 A40 40 0 0 0 116 45 A40 40 0 0 0 156 75" strokeDasharray="3 3" />
                 </g>
-                <rect y="0" width="160" height="12" fill="#ff6a13" opacity="0.06" className="animate-scan" />
+                <rect y="0" width="160" height="12" fill="#e95323" opacity="0.06" className="animate-scan" />
               </svg>
             )}
             <span
@@ -113,34 +115,39 @@ export function VideoCard({
           <h3 className="font-display text-lg font-bold uppercase leading-tight">{video.title}</h3>
           <p className="mt-1 flex flex-wrap gap-x-2 text-xs text-muted">
             {playerName && video.player_id && (
-              <Link href={`/players/${video.player_id}`} className="text-celeste hover:underline">
+              <Link href={routes.player(video.player_id)} className="text-celeste hover:underline">
                 {playerName}
               </Link>
             )}
             {sessionTitle && video.session_id && (
-              <Link href={`/trainings/${video.session_id}`} className="hover:text-text hover:underline">
+              <Link href={routes.training(video.session_id)} className="hover:text-text hover:underline">
                 {sessionTitle}
               </Link>
             )}
             <span>{formatDate(video.created_at, locale)}</span>
           </p>
         </div>
-        {canDelete && (
-          <button
-            type="button"
-            title={t.common.delete}
-            onClick={() => {
-              if (confirm(t.common.confirmDelete))
-                start(async () => {
-                  await deleteVideo(video.id);
-                });
-            }}
-            className="rounded-md p-1.5 text-muted transition hover:bg-red-500/10 hover:text-red-300"
-          >
-            <Trash2 className="h-4 w-4" />
-          </button>
-        )}
+        {canDelete && <DeleteVideoButton id={video.id} t={t} onPending={start} />}
       </div>
     </article>
+  );
+}
+
+function DeleteVideoButton({ id, t, onPending }: { id: string; t: Dictionary; onPending: TransitionStartFunction }) {
+  const user = useUser();
+  return (
+    <button
+      type="button"
+      title={t.common.delete}
+      onClick={() => {
+        if (confirm(t.common.confirmDelete))
+          onPending(async () => {
+            await deleteVideo(user, t, id);
+          });
+      }}
+      className="rounded-md p-1.5 text-muted transition hover:bg-red-500/10 hover:text-red-300"
+    >
+      <Trash2 className="h-4 w-4" />
+    </button>
   );
 }

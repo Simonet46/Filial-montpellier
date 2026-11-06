@@ -1,8 +1,8 @@
 "use client";
 
 import { useActionState, useState } from "react";
+import { useRouter } from "next/navigation";
 import { ImagePlus, Loader2 } from "lucide-react";
-import { savePlayer } from "@/lib/actions/players";
 import {
   HANDS,
   NATIONAL_TEAMS,
@@ -12,8 +12,11 @@ import {
   STORAGE_BUCKETS,
 } from "@/lib/constants";
 import type { Dictionary } from "@/lib/i18n/es";
-import { createClient } from "@/lib/supabase/client";
-import type { Locale, NationalTeam, Player, PlayerContact } from "@/lib/types";
+import { savePlayer } from "@/lib/mutations";
+import { routes } from "@/lib/routes";
+import { useUser } from "@/lib/session";
+import { getSupabase } from "@/lib/supabase/client";
+import type { ActionState, Locale, NationalTeam, Player, PlayerContact } from "@/lib/types";
 import { cn, countryName, uid } from "@/lib/utils";
 import { FormMessage, FormSection, SubmitButton } from "./form-bits";
 import { FormField, LinkButton } from "./ui";
@@ -34,7 +37,13 @@ export function PlayerForm({
   photoUrl?: string | null;
   isDemo: boolean;
 }) {
-  const [state, action] = useActionState(savePlayer, null);
+  const user = useUser();
+  const router = useRouter();
+  const [state, action] = useActionState(async (_prev: ActionState, form: FormData) => {
+    const res = await savePlayer(user, t, form);
+    if (res?.ok && res.id) router.push(routes.player(res.id));
+    return res;
+  }, null);
   const [passports, setPassports] = useState<string[]>(player?.passports ?? ["AR"]);
   const [nationalTeam, setNationalTeam] = useState<NationalTeam>(player?.national_team ?? "none");
   const [photoPath, setPhotoPath] = useState(player?.photo_path ?? "");
@@ -52,14 +61,21 @@ export function PlayerForm({
     setUploading(true);
     setUploadError(null);
     try {
-      const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
-      const path = `${uid()}.${ext}`;
-      const { error } = await createClient().storage.from(STORAGE_BUCKETS.photos).upload(path, file, {
-        contentType: file.type,
-      });
-      if (error) throw error;
-      setPhotoPath(path);
-      setPreview(URL.createObjectURL(file));
+      if (isDemo) {
+        // Modo demo: la foto se guarda reducida dentro del navegador.
+        const dataUrl = await resizeToDataUrl(file);
+        setPhotoPath(dataUrl);
+        setPreview(dataUrl);
+      } else {
+        const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
+        const path = `${uid()}.${ext}`;
+        const { error } = await getSupabase().storage.from(STORAGE_BUCKETS.photos).upload(path, file, {
+          contentType: file.type,
+        });
+        if (error) throw error;
+        setPhotoPath(path);
+        setPreview(URL.createObjectURL(file));
+      }
     } catch (e) {
       setUploadError(e instanceof Error ? e.message : t.common.error);
     } finally {
@@ -75,15 +91,11 @@ export function PlayerForm({
       <FormSection title={t.players.sections.identity}>
         <div className="flex items-center gap-4 md:col-span-2">
           <Avatar first={player?.first_name ?? "?"} last={player?.last_name ?? ""} url={preview} size="lg" />
-          {isDemo ? (
-            <p className="text-sm text-muted">{t.players.photoDemo}</p>
-          ) : (
-            <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-dashed border-line px-4 py-3 text-sm text-muted transition hover:border-mhb-blue-light hover:text-text">
-              {uploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <ImagePlus className="h-4 w-4" />}
-              {f.photo}
-              <input type="file" accept="image/*" className="sr-only" onChange={(e) => onPhoto(e.target.files?.[0])} />
-            </label>
-          )}
+          <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-dashed border-line px-4 py-3 text-sm text-muted transition hover:border-mhb-blue-light hover:text-text">
+            {uploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <ImagePlus className="h-4 w-4" />}
+            {f.photo}
+            <input type="file" accept="image/*" className="sr-only" onChange={(e) => onPhoto(e.target.files?.[0])} />
+          </label>
           {uploadError && <p className="text-sm text-red-300">{uploadError}</p>}
         </div>
         <FormField label={`${f.firstName} *`} htmlFor="first_name">
@@ -125,7 +137,7 @@ export function PlayerForm({
                   onChange={() => togglePassport(code)}
                   className="sr-only"
                 />
-                <span className="font-mono text-xs">{code}</span> {countryName(code, locale)}
+                <span className="font-sans text-xs">{code}</span> {countryName(code, locale)}
               </label>
             ))}
           </div>
@@ -244,7 +256,7 @@ export function PlayerForm({
 
       <FormMessage state={state} />
       <div className="flex flex-wrap justify-end gap-2">
-        <LinkButton href={player ? `/players/${player.id}` : "/players"} variant="ghost">
+        <LinkButton href={player ? routes.player(player.id) : routes.players} variant="ghost">
           {t.common.cancel}
         </LinkButton>
         <SubmitButton pendingLabel={t.common.saving} disabled={uploading}>
@@ -253,4 +265,16 @@ export function PlayerForm({
       </div>
     </form>
   );
+}
+
+/** Reduce la imagen a un JPEG chico para guardarla en el navegador (modo demo). */
+async function resizeToDataUrl(file: File, max = 360): Promise<string> {
+  const bitmap = await createImageBitmap(file);
+  const scale = Math.min(1, max / Math.max(bitmap.width, bitmap.height));
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.round(bitmap.width * scale);
+  canvas.height = Math.round(bitmap.height * scale);
+  canvas.getContext("2d")?.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+  bitmap.close();
+  return canvas.toDataURL("image/jpeg", 0.82);
 }

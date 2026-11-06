@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { POSITION_COORDS, POSITIONS } from "@/lib/constants";
 import type { Dictionary } from "@/lib/i18n/es";
 import { RATING_KEYS, type Position, type Ratings } from "@/lib/types";
@@ -6,22 +7,28 @@ import { cn, initials } from "@/lib/utils";
 /* ------------------------------------------------------------------ Logo -- */
 
 export function Logo({ t, compact = false }: { t: Dictionary; compact?: boolean }) {
+  // IDs únicos: puede haber varios logos en la página (p. ej. versión móvil y escritorio).
+  const id = useId().replace(/:/g, "");
   return (
     <div className="flex items-center gap-3">
       <svg viewBox="0 0 48 48" className="h-10 w-10 shrink-0" aria-hidden>
         <defs>
-          <linearGradient id="lg-ball" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="var(--color-mhb-orange)" />
-            <stop offset="1" stopColor="var(--color-sol)" />
+          <linearGradient id={`${id}-shield`} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="var(--color-mhb-blue)" />
+            <stop offset="1" stopColor="var(--color-mhb-navy)" />
+          </linearGradient>
+          <linearGradient id={`${id}-ball`} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="var(--color-mhb-orange-light)" />
+            <stop offset="1" stopColor="var(--color-mhb-orange-dark)" />
           </linearGradient>
         </defs>
         <polygon
           points="24,2 43,13 43,35 24,46 5,35 5,13"
-          fill="var(--color-mhb-blue-deep)"
-          stroke="var(--color-mhb-blue-light)"
-          strokeWidth="1.5"
+          fill={`url(#${id}-shield)`}
+          stroke="rgb(255 255 255 / 0.35)"
+          strokeWidth="1.2"
         />
-        <circle cx="24" cy="24" r="11" fill="url(#lg-ball)" />
+        <circle cx="24" cy="24" r="11" fill={`url(#${id}-ball)`} />
         <path
           d="M13.5 21c4 2.5 17 2.5 21 0M13.5 27c4-2.5 17-2.5 21 0M24 13c-3 3.5-3 18.5 0 22"
           fill="none"
@@ -32,14 +39,10 @@ export function Logo({ t, compact = false }: { t: Dictionary; compact?: boolean 
       </svg>
       {!compact && (
         <div className="leading-none">
-          <p className="font-display text-lg font-extrabold uppercase italic tracking-wide">
-            {t.brand.club}
-          </p>
+          <p className="whitespace-nowrap font-display text-lg font-extrabold uppercase tracking-wide">{t.brand.club}</p>
           <div className="mt-1 flex items-center gap-2">
             <span className="arg-stripe h-1.5 w-6 rounded-full" />
-            <p className="font-mono text-[0.62rem] uppercase tracking-[0.25em] text-celeste">
-              {t.brand.filial}
-            </p>
+            <p className="text-[0.62rem] font-bold uppercase tracking-[0.25em] text-celeste">{t.brand.filial}</p>
           </div>
         </div>
       )}
@@ -78,7 +81,7 @@ export function Avatar({
           // eslint-disable-next-line @next/next/no-img-element -- URL firmada de Storage
           <img src={url} alt={`${first} ${last}`} className="h-full w-full object-cover" />
         ) : (
-          <span className="font-display font-extrabold italic text-gradient-blue">
+          <span className="font-display font-extrabold text-gradient-blue">
             {initials(first, last)}
           </span>
         )}
@@ -162,8 +165,8 @@ export function RadarChart({
         <polygon
           key={lvl}
           points={poly(() => lvl)}
-          fill={lvl === 10 ? "rgb(27 77 255 / 0.06)" : "none"}
-          stroke="rgb(120 150 255 / 0.18)"
+          fill={lvl === 10 ? "rgb(0 122 193 / 0.07)" : "none"}
+          stroke="rgb(255 255 255 / 0.12)"
           strokeWidth={1}
         />
       ))}
@@ -172,13 +175,13 @@ export function RadarChart({
         const [lx, ly] = point(i, 12.6);
         return (
           <g key={key}>
-            <line x1={c} y1={c} x2={x} y2={y} stroke="rgb(120 150 255 / 0.18)" />
+            <line x1={c} y1={c} x2={x} y2={y} stroke="rgb(255 255 255 / 0.12)" />
             <text
               x={lx}
               y={ly}
               textAnchor="middle"
               dominantBaseline="middle"
-              className="fill-muted font-mono text-[9px] uppercase tracking-wider"
+              className="fill-muted font-sans text-[9px] uppercase tracking-wider"
             >
               {t.ratings[key]}
             </text>
@@ -233,19 +236,20 @@ export function CourtMap({
   t: Dictionary;
   className?: string;
 }) {
+  const id = useId().replace(/:/g, "");
   return (
     <svg viewBox="0 0 200 120" className={cn("h-auto w-full", className)} role="img" aria-label={t.positions[primary]}>
       <defs>
-        <radialGradient id="court-glow">
+        <radialGradient id={`${id}-glow`}>
           <stop offset="0" stopColor="var(--color-mhb-orange)" stopOpacity="0.9" />
           <stop offset="1" stopColor="var(--color-mhb-orange)" stopOpacity="0" />
         </radialGradient>
-        <clipPath id="court-clip">
+        <clipPath id={`${id}-clip`}>
           <rect x="0" y="0" width="200" height="120" rx="6" />
         </clipPath>
       </defs>
-      <g clipPath="url(#court-clip)">
-        <rect x="0" y="0" width="200" height="120" fill="rgb(27 77 255 / 0.08)" />
+      <g clipPath={`url(#${id}-clip)`}>
+        <rect x="0" y="0" width="200" height="120" fill="rgb(0 122 193 / 0.1)" />
         <path
           d="M25 0 A60 60 0 0 0 85 60 L115 60 A60 60 0 0 0 175 0 Z"
           fill="rgb(116 172 223 / 0.10)"
@@ -262,19 +266,19 @@ export function CourtMap({
         <line x1="95" y1="70" x2="105" y2="70" stroke="var(--color-celeste)" strokeOpacity="0.5" />
         <rect x="85" y="0" width="30" height="3" fill="var(--color-text)" opacity="0.8" />
       </g>
-      <rect x="0.5" y="0.5" width="199" height="119" rx="6" fill="none" stroke="rgb(120 150 255 / 0.25)" />
+      <rect x="0.5" y="0.5" width="199" height="119" rx="6" fill="none" stroke="rgb(255 255 255 / 0.16)" />
       {POSITIONS.map((pos) => {
         const { x, y } = POSITION_COORDS[pos];
         const isPrimary = pos === primary;
         const isSecondary = pos === secondary;
         return (
           <g key={pos}>
-            {isPrimary && <circle cx={x} cy={y} r={16} fill="url(#court-glow)" className="animate-pulse-glow" />}
+            {isPrimary && <circle cx={x} cy={y} r={16} fill={`url(#${id}-glow)`} className="animate-pulse-glow" />}
             <circle
               cx={x}
               cy={y}
               r={isPrimary ? 6 : 4}
-              fill={isPrimary ? "var(--color-mhb-orange)" : isSecondary ? "var(--color-celeste)" : "rgb(141 154 194 / 0.35)"}
+              fill={isPrimary ? "var(--color-mhb-orange)" : isSecondary ? "var(--color-celeste)" : "rgb(160 174 192 / 0.35)"}
               stroke={isPrimary ? "#fff" : "none"}
               strokeWidth={1.2}
             />
@@ -283,7 +287,7 @@ export function CourtMap({
               y={y + (y > 100 ? -10 : 14)}
               textAnchor="middle"
               className={cn(
-                "font-mono text-[7px] uppercase",
+                "font-sans text-[7px] uppercase",
                 isPrimary ? "fill-text" : isSecondary ? "fill-celeste" : "fill-muted",
               )}
             >

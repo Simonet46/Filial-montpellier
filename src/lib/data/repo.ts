@@ -15,17 +15,10 @@ import type {
   VideoInput,
 } from "../types";
 
-export interface PublicStats {
-  players: number;
-  sessions: number;
-  videos: number;
-  eu: number;
-}
-
 /**
  * Contrato de acceso a datos. Hay dos implementaciones:
- * - Supabase (producción): Postgres + RLS + Storage.
- * - Demo (sin credenciales): datos de ejemplo en memoria.
+ * - Supabase (producción): Postgres + RLS + Storage, directo desde el navegador.
+ * - Demo (sin credenciales): datos de ejemplo guardados en el navegador (localStorage).
  */
 export interface Repo {
   listPlayers(): Promise<Player[]>;
@@ -60,9 +53,6 @@ export interface Repo {
 
   listProfiles(): Promise<Profile[]>;
   updateProfileRole(id: string, role: Role): Promise<void>;
-
-  /** Cifras agregadas para la portada pública (no expone datos personales). */
-  publicStats(): Promise<PublicStats>;
 
   /** URL firmada temporal para un archivo privado de Storage. */
   signedUrl(bucket: string, path: string): Promise<string | null>;

@@ -3,11 +3,13 @@
 import { useActionState, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Link2, Loader2, Upload } from "lucide-react";
-import { createVideo } from "@/lib/actions/videos";
 import { STORAGE_BUCKETS, VIDEO_KINDS } from "@/lib/constants";
 import type { Dictionary } from "@/lib/i18n/es";
-import { createClient } from "@/lib/supabase/client";
-import type { VideoKind } from "@/lib/types";
+import { createVideo } from "@/lib/mutations";
+import { routes } from "@/lib/routes";
+import { useUser } from "@/lib/session";
+import { getSupabase } from "@/lib/supabase/client";
+import type { ActionState, VideoKind } from "@/lib/types";
 import { cn, uid } from "@/lib/utils";
 import { FormMessage, FormSection, SubmitButton } from "./form-bits";
 import { FormField, LinkButton } from "./ui";
@@ -29,7 +31,17 @@ export function VideoForm({
   defaultSession?: string;
   isDemo: boolean;
 }) {
-  const [state, action] = useActionState(createVideo, null);
+  const user = useUser();
+  const router = useRouter();
+  const [state, action] = useActionState(async (_prev: ActionState, form: FormData) => {
+    const res = await createVideo(user, t, form);
+    if (res?.ok) {
+      const player = String(form.get("player_id") ?? "");
+      const session = String(form.get("session_id") ?? "");
+      router.push(player ? routes.player(player) : session ? routes.training(session) : routes.videos);
+    }
+    return res;
+  }, null);
   const [mode, setMode] = useState<"upload" | "link">(isDemo ? "link" : "upload");
   const [storagePath, setStoragePath] = useState("");
   const [progress, setProgress] = useState<"idle" | "uploading" | "done">("idle");
@@ -43,7 +55,7 @@ export function VideoForm({
     try {
       const ext = file.name.split(".").pop()?.toLowerCase() || "mp4";
       const path = `${new Date().toISOString().slice(0, 7)}/${uid()}.${ext}`;
-      const { error } = await createClient()
+      const { error } = await getSupabase()
         .storage.from(STORAGE_BUCKETS.videos)
         .upload(path, file, { contentType: file.type, cacheControl: "3600" });
       if (error) throw error;
@@ -129,7 +141,7 @@ export function VideoForm({
             <span className="font-display text-lg font-bold uppercase">
               {progress === "uploading" ? t.videos.uploading : progress === "done" ? "✓" : f.file}
             </span>
-            {storagePath && <span className="font-mono text-xs text-muted">{storagePath}</span>}
+            {storagePath && <span className="font-sans text-xs text-muted">{storagePath}</span>}
             <input type="file" accept="video/*" className="sr-only" onChange={(e) => onFile(e.target.files?.[0])} />
           </label>
         ) : (
@@ -142,7 +154,7 @@ export function VideoForm({
 
       <FormMessage state={state} />
       <div className="flex flex-wrap justify-end gap-2">
-        <LinkButton href="/videos" variant="ghost">
+        <LinkButton href={routes.videos} variant="ghost">
           {t.common.cancel}
         </LinkButton>
         <SubmitButton
@@ -169,7 +181,7 @@ export function VideoFilters({
     const next = new URLSearchParams(params);
     if (value) next.set(key, value);
     else next.delete(key);
-    router.push(`/videos${next.size ? `?${next}` : ""}`);
+    router.push(`${routes.videos}${next.size ? `?${next}` : ""}`);
   };
   return (
     <div className="glass mb-6 flex flex-col gap-3 rounded-2xl p-4 sm:flex-row">

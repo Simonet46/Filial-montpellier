@@ -6,6 +6,7 @@ import { GitCompareArrows, Search, X } from "lucide-react";
 import { HANDS, MAX_COMPARE, PLAYER_STATUSES, POSITIONS } from "@/lib/constants";
 import type { Dictionary } from "@/lib/i18n/es";
 import type { Hand, Locale, PlayerStatus, PlayerSummary, Position } from "@/lib/types";
+import { routes } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 import { PlayerCard } from "./player-card";
 import { Button, EmptyState } from "./ui";
@@ -155,7 +156,7 @@ export function PlayersExplorer({
               onClick={() => togglePosition(pos)}
               title={t.positions[pos]}
               className={cn(
-                "rounded-md border px-2.5 py-1 font-mono text-xs uppercase tracking-wider transition",
+                "rounded-md border px-2.5 py-1 font-sans text-xs uppercase tracking-wider transition",
                 positions.includes(pos)
                   ? "border-mhb-orange bg-mhb-orange/20 text-mhb-orange-light"
                   : "border-line text-muted hover:border-mhb-blue-light/50 hover:text-text",
@@ -171,7 +172,7 @@ export function PlayersExplorer({
               type="button"
               onClick={() => set(!on)}
               className={cn(
-                "rounded-md border px-2.5 py-1 font-mono text-xs uppercase tracking-wider transition",
+                "rounded-md border px-2.5 py-1 font-sans text-xs uppercase tracking-wider transition",
                 on ? "border-celeste bg-celeste/15 text-celeste" : "border-line text-muted hover:text-text",
               )}
             >
@@ -226,7 +227,7 @@ export function PlayersExplorer({
             <span className="label">
               <span className="text-text">{selected.length}</span>/{MAX_COMPARE}
             </span>
-            <Button onClick={() => router.push(`/compare?ids=${selected.join(",")}`)}>
+            <Button onClick={() => router.push(routes.compare(selected))}>
               <GitCompareArrows className="h-4 w-4" />
               {t.players.compareSelected}
             </Button>

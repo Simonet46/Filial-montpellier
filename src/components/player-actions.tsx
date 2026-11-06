@@ -1,17 +1,19 @@
 "use client";
 
 import { useActionState, useEffect, useRef, useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { Plane, Star, Trash2 } from "lucide-react";
-import { createEvaluation, deleteEvaluation } from "@/lib/actions/evaluations";
-import { deletePlayer, toggleFavorite } from "@/lib/actions/players";
-import { createTrial } from "@/lib/actions/trials";
 import type { Dictionary } from "@/lib/i18n/es";
-import { RATING_KEYS, type Ratings, type TrainingSession } from "@/lib/types";
+import { createEvaluation, createTrial, deleteEvaluation, deletePlayer, toggleFavorite } from "@/lib/mutations";
+import { routes } from "@/lib/routes";
+import { useUser } from "@/lib/session";
+import { RATING_KEYS, type ActionState, type Ratings, type TrainingSession } from "@/lib/types";
 import { cn, todayISO } from "@/lib/utils";
 import { FormMessage, SubmitButton } from "./form-bits";
 import { Button, FormField } from "./ui";
 
 export function FavoriteButton({ playerId, initial, t }: { playerId: string; initial: boolean; t: Dictionary }) {
+  const user = useUser();
   const [on, setOn] = useState(initial);
   const [pending, start] = useTransition();
   return (
@@ -21,7 +23,7 @@ export function FavoriteButton({ playerId, initial, t }: { playerId: string; ini
       onClick={() =>
         start(async () => {
           setOn(!on);
-          const res = await toggleFavorite(playerId, !on);
+          const res = await toggleFavorite(user, t, playerId, !on);
           if (res?.error) setOn(on);
         })
       }
@@ -34,6 +36,8 @@ export function FavoriteButton({ playerId, initial, t }: { playerId: string; ini
 }
 
 export function DeletePlayerButton({ playerId, t }: { playerId: string; t: Dictionary }) {
+  const user = useUser();
+  const router = useRouter();
   const [pending, start] = useTransition();
   return (
     <Button
@@ -42,7 +46,8 @@ export function DeletePlayerButton({ playerId, t }: { playerId: string; t: Dicti
       onClick={() => {
         if (confirm(t.common.confirmDelete))
           start(async () => {
-            await deletePlayer(playerId);
+            const res = await deletePlayer(user, t, playerId);
+            if (res?.ok) router.push(routes.players);
           });
       }}
     >
@@ -52,30 +57,34 @@ export function DeletePlayerButton({ playerId, t }: { playerId: string; t: Dicti
 }
 
 /** Panel desplegable con un formulario; se cierra solo al guardar con éxito. */
-function useCloseOnSuccess(ok: boolean | undefined) {
+function useCloseOnSuccess(state: ActionState) {
   const ref = useRef<HTMLDetailsElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   useEffect(() => {
-    if (ok) {
+    if (state?.ok) {
       ref.current?.removeAttribute("open");
       formRef.current?.reset();
     }
-  }, [ok]);
+  }, [state]);
   return { ref, formRef };
 }
 
 export function TrialRequest({ playerId, t }: { playerId: string; t: Dictionary }) {
-  const [state, action] = useActionState(createTrial, null);
-  const { ref, formRef } = useCloseOnSuccess(state?.ok);
+  const user = useUser();
+  const [state, action] = useActionState(
+    (_prev: ActionState, form: FormData) => createTrial(user, t, form),
+    null,
+  );
+  const { ref, formRef } = useCloseOnSuccess(state);
   return (
     <details ref={ref} className="group relative">
-      <summary className="inline-flex h-10 cursor-pointer list-none items-center gap-2 rounded-lg bg-gradient-to-r from-mhb-orange to-mhb-orange-light px-4 font-display font-semibold uppercase tracking-wider text-white shadow-[0_0_24px_-6px_var(--color-mhb-orange)] hover:brightness-110">
+      <summary className="inline-flex h-10 cursor-pointer list-none items-center gap-2 rounded-lg bg-gradient-to-r from-mhb-orange to-mhb-orange-light px-4 font-display text-lg font-bold uppercase tracking-wider text-white shadow-[0_0_24px_-6px_var(--color-mhb-orange)] hover:brightness-110">
         <Plane className="h-4 w-4" /> {t.players.inviteTrial}
       </summary>
       <form
         ref={formRef}
         action={action}
-        className="glass hud absolute right-0 z-20 mt-2 w-[min(92vw,22rem)] space-y-3 rounded-2xl p-4 shadow-2xl"
+        className="glass hud absolute left-0 z-20 mt-2 w-[min(92vw,22rem)] space-y-3 rounded-2xl bg-night p-4 shadow-2xl sm:left-auto sm:right-0"
       >
         <input type="hidden" name="player_id" value={playerId} />
         <FormField label={t.trials.proposedDate} htmlFor="proposed_date">
@@ -104,8 +113,12 @@ export function EvaluationForm({
   defaults: Ratings | null;
   t: Dictionary;
 }) {
-  const [state, action] = useActionState(createEvaluation, null);
-  const { ref, formRef } = useCloseOnSuccess(state?.ok);
+  const user = useUser();
+  const [state, action] = useActionState(
+    (_prev: ActionState, form: FormData) => createEvaluation(user, t, form),
+    null,
+  );
+  const { ref, formRef } = useCloseOnSuccess(state);
   const initial = Object.fromEntries(
     RATING_KEYS.map((k) => [k, defaults ? Math.round(defaults[k]) : 6]),
   ) as Ratings;
@@ -114,7 +127,7 @@ export function EvaluationForm({
 
   return (
     <details ref={ref} className="glass rounded-2xl">
-      <summary className="flex cursor-pointer list-none items-center justify-between px-5 py-4 font-display text-lg font-bold uppercase tracking-wide text-mhb-orange-light">
+      <summary className="flex cursor-pointer list-none items-center justify-between px-5 py-4 font-display text-xl font-bold uppercase tracking-wide text-mhb-orange-light">
         + {e.new}
         <span className="label">{e.scale}</span>
       </summary>
@@ -138,7 +151,7 @@ export function EvaluationForm({
             <div key={k}>
               <div className="mb-1 flex items-center justify-between">
                 <label htmlFor={`ev_${k}`} className="label">{t.ratings[k]}</label>
-                <span className="font-display text-xl font-bold tabular-nums text-text">{values[k]}</span>
+                <span className="font-display text-2xl font-bold tabular-nums text-text">{values[k]}</span>
               </div>
               <input
                 id={`ev_${k}`}
@@ -177,6 +190,7 @@ export function EvaluationForm({
 }
 
 export function DeleteEvaluationButton({ id, t }: { id: string; t: Dictionary }) {
+  const user = useUser();
   const [pending, start] = useTransition();
   return (
     <button
@@ -186,7 +200,7 @@ export function DeleteEvaluationButton({ id, t }: { id: string; t: Dictionary })
       onClick={() => {
         if (confirm(t.common.confirmDelete))
           start(async () => {
-            await deleteEvaluation(id);
+            await deleteEvaluation(user, t, id);
           });
       }}
       className="rounded p-1 text-muted hover:bg-red-500/10 hover:text-red-300"

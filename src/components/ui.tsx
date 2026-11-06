@@ -1,5 +1,8 @@
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
+import { Loader2 } from "lucide-react";
+import type { Dictionary } from "@/lib/i18n/es";
+import { routes } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
 type Variant = "primary" | "secondary" | "ghost" | "danger";
@@ -61,7 +64,7 @@ export function Panel({
           <div>
             {kicker && <p className="label mb-1">{kicker}</p>}
             {title && (
-              <h2 className="font-display text-xl font-bold uppercase tracking-wide text-text">
+              <h2 className="font-display text-2xl font-bold uppercase tracking-wide text-text">
                 {title}
               </h2>
             )}
@@ -100,7 +103,7 @@ export function Badge({
     <span
       title={title}
       className={cn(
-        "inline-flex items-center gap-1 whitespace-nowrap rounded-md border px-2 py-0.5 font-mono text-[0.68rem] font-medium uppercase tracking-wider",
+        "inline-flex items-center gap-1 whitespace-nowrap rounded-md border px-2 py-0.5 font-sans text-[0.68rem] font-medium uppercase tracking-wider",
         tones[tone],
         className,
       )}
@@ -125,7 +128,7 @@ export function PageHeader({
     <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
       <div className="animate-rise">
         {kicker && <p className="label mb-2 text-mhb-orange-light">{kicker}</p>}
-        <h1 className="font-display text-4xl font-extrabold uppercase italic leading-none tracking-tight md:text-5xl">
+        <h1 className="font-display text-4xl font-extrabold uppercase leading-none tracking-tight md:text-5xl">
           {title}
         </h1>
         {subtitle && <p className="mt-2 max-w-2xl text-muted">{subtitle}</p>}
@@ -198,6 +201,26 @@ export function DataRow({ label, value }: { label: ReactNode; value: ReactNode }
     <div className="flex items-baseline justify-between gap-4 border-b border-line/60 py-2 last:border-0">
       <dt className="label">{label}</dt>
       <dd className="text-right font-medium text-text">{value}</dd>
+    </div>
+  );
+}
+
+export function PageLoading() {
+  return (
+    <div className="flex min-h-[50vh] items-center justify-center" role="status">
+      <Loader2 className="h-7 w-7 animate-spin text-mhb-orange" />
+    </div>
+  );
+}
+
+export function NotFoundState({ t }: { t: Dictionary }) {
+  return (
+    <div className="flex min-h-[50vh] flex-col items-center justify-center text-center">
+      <p className="font-display text-8xl font-extrabold leading-none text-gradient-orange">404</p>
+      <p className="label mt-3">{t.common.notFound}</p>
+      <LinkButton href={routes.dashboard} variant="secondary" className="mt-6">
+        {t.common.back}
+      </LinkButton>
     </div>
   );
 }
