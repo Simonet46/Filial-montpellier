@@ -1,0 +1,28 @@
+1:"$Sreact.fragment"
+2:"/Filial-montpellier/_next/static/chunks/1id-apzz-yyys.js"
+3:"/Filial-montpellier/_next/static/chunks/24aehl23xh8ba.js"
+4:I[44636,["$2","$3"],"Providers"]
+5:I[39756,["$2","$3"],"default"]
+6:I[37457,["$2","$3"],"default"]
+7:"/Filial-montpellier/_next/static/chunks/397jtur81wndj.js"
+8:I[29306,["$2","$3","$7"],"default"]
+c:I[47257,["$2","$3"],"ClientPageRoot"]
+f:I[97367,["$2","$3"],"OutletBoundary"]
+10:"$Sreact.suspense"
+12:"ViewportBoundary"
+13:I[97367,["$2","$3"],"$12"]
+15:"MetadataBoundary"
+16:I[97367,["$2","$3"],"$15"]
+18:I[68027,["$2","$3"],"default",1]
+:HL["/Filial-montpellier/_next/static/chunks/26x8nhlmwai7r.css","style"]
+a:X
+b:[["children",{"s":"__PAGE__","h":512,"d":{"r":["$","$1","c",{"children":[["$","$Lc",null,{"Component":"$8","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@d","$@e"]}}],[["$","script","script-0",{"src":"/Filial-montpellier/_next/static/chunks/397jtur81wndj.js","async":true,"nonce":"$undefined"}]],["$","$Lf",null,{"children":["$","$10",null,{"name":"Next.MetadataOutlet","children":"$@11"}]}]]}],"p":false,"v":null}}]]
+9:[["children",{"s":"/_not-found","h":512,"d":{"r":["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],"p":false,"v":"$a"},"c":"$Qb"}]]
+0:{"P":null,"c":["","_not-found",""],"q":"","i":false,"t":{"t":{"s":"","h":528,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/Filial-montpellier/_next/static/chunks/26x8nhlmwai7r.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/Filial-montpellier/_next/static/chunks/1id-apzz-yyys.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/Filial-montpellier/_next/static/chunks/24aehl23xh8ba.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"es","className":"_3FYCZa_variable UjWl8q_variable h-full antialiased","children":["$","body",null,{"className":"min-h-full","children":["$","$L4",null,{"children":["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","$L8",null,{}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]}]]}],"p":false,"v":null},"c":"$Q9"},"h":{"r":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L13",null,{"children":"$L14"}],["$","$L16",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$10",null,{"name":"Next.Metadata","children":"$L17"}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":false,"v":null}},"m":"$undefined","G":["$18",[["$","link","0",{"rel":"stylesheet","href":"/Filial-montpellier/_next/static/chunks/26x8nhlmwai7r.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"r":"$undefined","s":"$undefined","a":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"MeLmkR2s4ETxnUKodjtzi"}
+a:C
+d:{}
+e:"$b:0:1:d:r:props:children:0:props:serverProvidedParams:params"
+14:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#001025"}]]
+19:I[27201,["$2","$3"],"IconMark"]
+11:null
+17:[["$","title","0",{"children":"Filial Argentina · Montpellier Handball"}],["$","meta","1",{"name":"description","content":"Proyecto de detección y formación de talentos en Argentina para el Montpellier Handball. Propuesta de DS CONNECT."}],["$","link","2",{"rel":"icon","href":"/Filial-montpellier/icon.svg?icon.163i5bj-6gdpm.svg","sizes":"any","type":"image/svg+xml"}],["$","$L19","3",{}]]

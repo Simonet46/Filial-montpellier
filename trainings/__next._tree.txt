@@ -1,0 +1,8 @@
+:HL["/Filial-montpellier/_next/static/chunks/26x8nhlmwai7r.css","style"]
+:HL["/Filial-montpellier/_next/static/media/2d4cfca97dcd1f91-s.p.3w4dz-7w_7xvr.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Filial-montpellier/_next/static/media/660acf689794c992-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Filial-montpellier/_next/static/media/b321c3467f72ab6d.p.2mx8o19a7jz1u.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+3:[["children",{"s":"__PAGE__","h":160}]]
+2:[["children",{"s":"trainings","h":96,"c":"$Q3"}]]
+1:[["children",{"s":"(platform)","h":96,"c":"$Q2"}]]
+0:{"b":"MeLmkR2s4ETxnUKodjtzi","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

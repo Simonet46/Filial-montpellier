@@ -1,0 +1,36 @@
+1:"$Sreact.fragment"
+2:"/Filial-montpellier/_next/static/chunks/1id-apzz-yyys.js"
+3:"/Filial-montpellier/_next/static/chunks/24aehl23xh8ba.js"
+4:I[44636,["$2","$3"],"Providers"]
+5:I[39756,["$2","$3"],"default"]
+6:I[37457,["$2","$3"],"default"]
+7:"/Filial-montpellier/_next/static/chunks/397jtur81wndj.js"
+8:I[29306,["$2","$3","$7"],"default"]
+a:"/Filial-montpellier/_next/static/chunks/3mk6812klql1s.js"
+b:"/Filial-montpellier/_next/static/chunks/0jln68wayyb09.js"
+c:I[33204,["$2","$3","$a","$b"],"PlatformGate"]
+11:"$Sreact.suspense"
+12:"/Filial-montpellier/_next/static/chunks/3fbobct_mq8wj.js"
+13:I[5014,["$2","$3","$a","$b","$12"],"default"]
+14:I[26358,["$2","$3","$a","$b","$12"],"PlayerView"]
+15:I[97367,["$2","$3"],"OutletBoundary"]
+17:"ViewportBoundary"
+18:I[97367,["$2","$3"],"$17"]
+1a:"MetadataBoundary"
+1b:I[97367,["$2","$3"],"$1a"]
+1d:I[68027,["$2","$3"],"default",1]
+:HL["/Filial-montpellier/_next/static/chunks/26x8nhlmwai7r.css","style"]
+:HL["/Filial-montpellier/_next/static/media/2d4cfca97dcd1f91-s.p.3w4dz-7w_7xvr.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Filial-montpellier/_next/static/media/660acf689794c992-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Filial-montpellier/_next/static/media/b321c3467f72ab6d.p.2mx8o19a7jz1u.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+e:X
+10:[["children",{"s":"__PAGE__","h":512,"d":{"r":["$","$1","c",{"children":[["$","$11",null,{"fallback":["$","div",null,{"className":"flex min-h-[50vh] items-center justify-center","role":"status","children":["$","$L13",null,{"ref":"$undefined","icon":{"name":"loader-circle","size":24,"node":[["path",{"d":"M21 12a9 9 0 1 1-6.219-8.56","key":"13zald"}]],"aliases":["loader-2"]},"className":"h-7 w-7 animate-spin text-mhb-orange"}]}],"children":["$","$L14",null,{}]}],[["$","script","script-0",{"src":"/Filial-montpellier/_next/static/chunks/3fbobct_mq8wj.js","async":true,"nonce":"$undefined"}]],["$","$L15",null,{"children":["$","$11",null,{"name":"Next.MetadataOutlet","children":"$@16"}]}]]}],"p":false,"v":null}}]]
+f:[["children",{"s":"view","h":512,"d":{"r":["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],"p":false,"v":"$e"},"c":"$Q10"}]]
+d:[["children",{"s":"players","h":512,"d":{"r":["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],"p":false,"v":"$e"},"c":"$Qf"}]]
+9:[["children",{"s":"(platform)","h":512,"d":{"r":["$","$1","c",{"children":[[["$","script","script-0",{"src":"/Filial-montpellier/_next/static/chunks/3mk6812klql1s.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/Filial-montpellier/_next/static/chunks/0jln68wayyb09.js","async":true,"nonce":"$undefined"}]],["$","$Lc",null,{"children":["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","$L8",null,{}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]]}],"p":false,"v":null},"c":"$Qd"}]]
+0:{"P":null,"c":["","players","view",""],"q":"","i":false,"t":{"t":{"s":"","h":528,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/Filial-montpellier/_next/static/chunks/26x8nhlmwai7r.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/Filial-montpellier/_next/static/chunks/1id-apzz-yyys.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/Filial-montpellier/_next/static/chunks/24aehl23xh8ba.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"es","className":"_3FYCZa_variable UjWl8q_variable h-full antialiased","children":["$","body",null,{"className":"min-h-full","children":["$","$L4",null,{"children":["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","$L8",null,{}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]}]]}],"p":false,"v":null},"c":"$Q9"},"h":{"r":["$","$1","h",{"children":[null,["$","$L18",null,{"children":"$L19"}],["$","$L1b",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$11",null,{"name":"Next.Metadata","children":"$L1c"}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":false,"v":null}},"m":"$undefined","G":["$1d",[["$","link","0",{"rel":"stylesheet","href":"/Filial-montpellier/_next/static/chunks/26x8nhlmwai7r.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"r":"$undefined","s":"$undefined","a":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"MeLmkR2s4ETxnUKodjtzi"}
+e:C
+19:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#001025"}]]
+1e:I[27201,["$2","$3"],"IconMark"]
+16:null
+1c:[["$","title","0",{"children":"Filial Argentina · Montpellier Handball"}],["$","meta","1",{"name":"description","content":"Proyecto de detección y formación de talentos en Argentina para el Montpellier Handball. Propuesta de DS CONNECT."}],["$","link","2",{"rel":"icon","href":"/Filial-montpellier/icon.svg?icon.163i5bj-6gdpm.svg","sizes":"any","type":"image/svg+xml"}],["$","$L1e","3",{}]]
