@@ -1,0 +1,2 @@
+Rama generada automáticamente por .github/workflows/deploy-pages.yml.
+No editar a mano: cada push a la rama principal la vuelve a publicar.
