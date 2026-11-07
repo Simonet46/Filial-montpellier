@@ -372,7 +372,7 @@ export const demoContacts: PlayerContact[] = demoPlayers.slice(0, 6).map((p, i) 
 }));
 
 export const demoProfiles: Profile[] = [
-  { id: "demo-admin", email: "admin@dsconnect-demo.com", full_name: "DS CONNECT", role: "admin", organization: "DS CONNECT", created_at: T0 },
+  { id: "demo-admin", email: "admin@filial-demo.ar", full_name: "Coordinación", role: "admin", organization: "Filial Argentina", created_at: T0 },
   { id: "demo-coach", email: "entrenador@filial-demo.ar", full_name: "Entrenador Demo", role: "coach", organization: "Filial Argentina", created_at: T0 },
   { id: "demo-coach-2", email: "lucia@filial-demo.ar", full_name: "Lucía Gómez", role: "coach", organization: "Filial Argentina", created_at: T0 },
   { id: "demo-coach-3", email: "diego@filial-demo.ar", full_name: "Diego Sosa", role: "coach", organization: "Filial Argentina", created_at: T0 },

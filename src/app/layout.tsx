@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Filial Argentina · Montpellier Handball",
   description:
-    "Proyecto de detección y formación de talentos en Argentina para el Montpellier Handball. Propuesta de DS CONNECT.",
+    "Proyecto de detección y formación de talentos en Argentina para el Montpellier Handball.",
 };
 
 export const viewport: Viewport = {

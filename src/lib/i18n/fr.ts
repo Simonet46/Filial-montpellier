@@ -56,7 +56,7 @@ const fr: Dictionary = {
     pending: "En attente",
   },
   pitch: {
-    proposal: "Proposition de DS CONNECT pour le Montpellier Handball",
+    proposal: "Proposition pour le Montpellier Handball",
     slides: [
       "Accueil",
       "Le projet",
@@ -68,7 +68,7 @@ const fr: Dictionary = {
       "Bénéfices",
       "Sécurité",
       "Feuille de route",
-      "Qui sommes-nous",
+      "Qui porte le projet",
       "Prochaines étapes",
     ],
     controls: {
@@ -141,7 +141,7 @@ const fr: Dictionary = {
       items: [
         { who: "Entraîneurs de la filiale", where: "Argentine", text: "Ils ajoutent joueurs, stages, vidéos et évaluations." },
         { who: "Montpellier Handball", where: "Centre de formation · France", text: "Il analyse, compare, suit ses favoris et invite à des essais." },
-        { who: "DS CONNECT", where: "Technologie", text: "Développe, administre et assure le support de la plateforme." },
+        { who: "Coordination", where: "Argentine ↔ France", text: "Coordonne la filiale, la relation avec le club et la plateforme." },
       ],
     },
     journey: {
@@ -198,13 +198,12 @@ const fr: Dictionary = {
       ],
     },
     about: {
-      kicker: "Qui sommes-nous",
-      title: "DS CONNECT",
-      text: "Entreprise technologique, créatrice d'iDisko. Son fondateur et CEO est un ancien joueur du Montpellier Handball et de la sélection argentine : il connaît le handball argentin de l'intérieur et sait ce qu'exige le club.",
+      kicker: "Qui porte le projet",
+      title: "Un pont avec de l'expérience",
+      text: "Le projet est porté par un ancien joueur du Montpellier Handball et de la sélection argentine : il connaît le handball argentin de l'intérieur et sait ce qu'exige le club.",
       facts: [
         { value: "MHB", label: "Ancien joueur du Montpellier Handball" },
         { value: "ARG", label: "Ancien joueur de la sélection argentine" },
-        { value: "iDisko", label: "Créateurs de l'application iDisko" },
       ],
       quote: "Nous connaissons les deux rives du pont.",
     },
@@ -220,7 +219,7 @@ const fr: Dictionary = {
       ctaPlatform: "Accéder à la plateforme",
       ctaCoach: "Accès entraîneurs",
       ctaClub: "Accès club",
-      footer: "Proposition développée par DS CONNECT",
+      footer: "Filiale Argentine · Montpellier Handball",
     },
   },
   login: {

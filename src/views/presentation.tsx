@@ -516,7 +516,7 @@ export function PresentationView() {
           <div>
             <SlideTitle n={11} kicker={p.about.kicker} title={p.about.title} />
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-text/85">{p.about.text}</p>
-            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
               {p.about.facts.map((fact, i) => (
                 <div key={fact.value} className="glass rounded-2xl p-4 text-center">
                   <p className={cn("font-display text-4xl font-black", ["text-gradient-orange", "text-celeste", "text-gradient-blue"][i])}>
@@ -532,7 +532,7 @@ export function PresentationView() {
             <p className="mt-4 font-display text-6xl font-black uppercase leading-[0.9]">{p.about.quote}</p>
             <div className="mt-6 flex items-center gap-3">
               <span className="arg-stripe h-1.5 w-10 rounded-full" />
-              <span className="label">DS CONNECT</span>
+              <span className="label">{t.brand.filial}</span>
             </div>
           </blockquote>
         </div>

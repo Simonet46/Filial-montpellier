@@ -24,10 +24,10 @@ export const DEMO_USERS: Record<DemoRole, CurrentUser> = {
   },
   admin: {
     id: "demo-admin",
-    email: "admin@dsconnect-demo.com",
-    name: "DS CONNECT",
+    email: "admin@filial-demo.ar",
+    name: "Coordinación",
     role: "admin",
-    organization: "DS CONNECT",
+    organization: "Filial Argentina",
   },
 };
 

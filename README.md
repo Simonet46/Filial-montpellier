@@ -1,6 +1,6 @@
 # Filial Argentina · Montpellier Handball
 
-Proyecto de **DS CONNECT** para el **Montpellier Handball**: un programa de detección y formación de talentos en Argentina y la plataforma donde los entrenadores de la filial cargan jugadores, concentraciones, videos y evaluaciones. El club y su centro de formación los analizan, comparan e invitan a probarse.
+Proyecto para el **Montpellier Handball**: un programa de detección y formación de talentos en Argentina y la plataforma donde los entrenadores de la filial cargan jugadores, concentraciones, videos y evaluaciones. El club y su centro de formación los analizan, comparan e invitan a probarse.
 
 **Sitio publicado:** <https://simonet46.github.io/Filial-montpellier/>
 
@@ -87,7 +87,7 @@ Cada push a la rama principal ejecuta `.github/workflows/deploy-pages.yml`: lint
    ```
 7. **Primer administrador**: invitá tu correo desde *Auth → Users* y ejecutá:
    ```sql
-   update public.profiles set role = 'admin', full_name = 'DS CONNECT' where email = 'tu@correo.com';
+   update public.profiles set role = 'admin', full_name = 'Coordinación' where email = 'tu@correo.com';
    ```
 8. **Invitaciones desde la plataforma** (opcional): `supabase functions deploy invite-user` (código en `supabase/functions/invite-user/`). Sin eso, se invita desde el panel de Supabase y el rol se asigna en `/admin/users/`.
 9. **Videos**: en *Storage → Settings* ajustá el tamaño máximo de archivo. Los videos y fotos son privados y se ven con URLs firmadas.
@@ -135,6 +135,3 @@ supabase/
 
 Muchos jugadores son menores de edad. Los datos de contacto están en una tabla separada que **solo** ven entrenadores y administradores, los archivos son privados y el acceso es solo por invitación. Antes de cargar datos reales conviene tener el consentimiento de las familias (Ley 25.326 en Argentina, RGPD en Francia).
 
----
-
-Propuesta desarrollada por **DS CONNECT**.

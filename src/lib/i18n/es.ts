@@ -54,7 +54,7 @@ const es = {
     pending: "Pendiente",
   },
   pitch: {
-    proposal: "Propuesta de DS CONNECT para el Montpellier Handball",
+    proposal: "Propuesta para el Montpellier Handball",
     slides: [
       "Inicio",
       "El proyecto",
@@ -66,7 +66,7 @@ const es = {
       "Beneficios",
       "Seguridad",
       "Hoja de ruta",
-      "Quiénes somos",
+      "Quién lo impulsa",
       "Próximos pasos",
     ],
     controls: {
@@ -139,7 +139,7 @@ const es = {
       items: [
         { who: "Entrenadores de la filial", where: "Argentina", text: "Cargan jugadores, concentraciones, videos y evaluaciones." },
         { who: "Montpellier Handball", where: "Centro de formación · Francia", text: "Analiza, compara, sigue a sus favoritos e invita a probarse." },
-        { who: "DS CONNECT", where: "Tecnología", text: "Desarrolla, administra y da soporte a la plataforma." },
+        { who: "Coordinación", where: "Argentina ↔ Francia", text: "Coordina la filial, la relación con el club y la plataforma." },
       ],
     },
     journey: {
@@ -196,13 +196,12 @@ const es = {
       ],
     },
     about: {
-      kicker: "Quiénes somos",
-      title: "DS CONNECT",
-      text: "Empresa de tecnología creadora de iDisko. Su fundador y CEO es ex jugador del Montpellier Handball y de la Selección Argentina: conoce el handball argentino desde adentro y sabe lo que exige el club.",
+      kicker: "Quién lo impulsa",
+      title: "Un puente con experiencia",
+      text: "El proyecto lo impulsa un ex jugador del Montpellier Handball y de la Selección Argentina: conoce el handball argentino desde adentro y sabe lo que exige el club.",
       facts: [
         { value: "MHB", label: "Ex jugador del Montpellier Handball" },
         { value: "ARG", label: "Ex jugador de la Selección Argentina" },
-        { value: "iDisko", label: "Creadores de la app iDisko" },
       ],
       quote: "Conocemos los dos lados del puente.",
     },
@@ -218,7 +217,7 @@ const es = {
       ctaPlatform: "Entrar a la plataforma",
       ctaCoach: "Acceso entrenadores",
       ctaClub: "Acceso club",
-      footer: "Propuesta desarrollada por DS CONNECT",
+      footer: "Filial Argentina · Montpellier Handball",
     },
   },
   login: {
