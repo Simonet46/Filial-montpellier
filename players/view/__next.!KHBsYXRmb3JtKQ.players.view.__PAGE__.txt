@@ -1,13 +1,13 @@
 1:"$Sreact.fragment"
-2:"/Filial-montpellier/_next/static/chunks/1id-apzz-yyys.js"
-3:"/Filial-montpellier/_next/static/chunks/24aehl23xh8ba.js"
+2:"/Filial-montpellier/_next/static/chunks/0o62065v9xp5c.js"
+3:"/Filial-montpellier/_next/static/chunks/2xre235m2xge4.js"
 4:I[44636,["$2","$3"],"Providers"]
 5:I[39756,["$2","$3"],"default"]
 6:I[37457,["$2","$3"],"default"]
 7:"/Filial-montpellier/_next/static/chunks/397jtur81wndj.js"
 8:I[29306,["$2","$3","$7"],"default"]
 c:"/Filial-montpellier/_next/static/chunks/3mk6812klql1s.js"
-d:"/Filial-montpellier/_next/static/chunks/0jln68wayyb09.js"
+d:"/Filial-montpellier/_next/static/chunks/454cpv7u3hqnf.js"
 e:I[33204,["$2","$3","$c","$d"],"PlatformGate"]
 16:"$Sreact.suspense"
 17:"/Filial-montpellier/_next/static/chunks/3fbobct_mq8wj.js"
@@ -19,15 +19,15 @@ e:I[33204,["$2","$3","$c","$d"],"PlatformGate"]
 1f:"MetadataBoundary"
 20:I[97367,["$2","$3"],"$1f"]
 21:I[27201,["$2","$3"],"IconMark"]
-:HL["/Filial-montpellier/_next/static/chunks/26x8nhlmwai7r.css","style"]
+:HL["/Filial-montpellier/_next/static/chunks/0on1y8lesli80.css","style"]
 a:X
 12:X
 12:C
 15:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$1","c",{"children":[["$","$16",null,{"fallback":["$","div",null,{"className":"flex min-h-[50vh] items-center justify-center","role":"status","children":["$","$L18",null,{"icon":{"name":"loader-circle","size":24,"node":[["path",{"d":"M21 12a9 9 0 1 1-6.219-8.56","key":"13zald"}]],"aliases":["loader-2"]},"className":"h-7 w-7 animate-spin text-mhb-orange"}]}],"children":["$","$L19",null,{}]}],[["$","script","script-0",{"src":"/Filial-montpellier/_next/static/chunks/3fbobct_mq8wj.js","async":true}]],["$","$L1a",null,{"children":["$","$16",null,{"name":"Next.MetadataOutlet","children":"$@1b"}]}]]}],"p":"$@1c","v":null,"s":"$a"}}]]
 13:[["children",{"s":"view","h":96,"d":{"r":["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","template":["$","$L6",null,{}]}]]}],"p":"$@14","v":"$12","s":"$a"},"c":"$Q15"}]]
 10:[["children",{"s":"players","h":96,"d":{"r":["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","template":["$","$L6",null,{}]}]]}],"p":"$@11","v":"$12","s":"$a"},"c":"$Q13"}]]
-b:[["children",{"s":"(platform)","h":96,"d":{"r":["$","$1","c",{"children":[[["$","script","script-0",{"src":"/Filial-montpellier/_next/static/chunks/3mk6812klql1s.js","async":true}],["$","script","script-1",{"src":"/Filial-montpellier/_next/static/chunks/0jln68wayyb09.js","async":true}]],["$","$Le",null,{"children":["$","$L5",null,{"parallelRouterKey":"children","template":["$","$L6",null,{}],"notFound":[["$","$L8",null,{}],[]]}]}]]}],"p":"$@f","v":null,"s":"$a"},"c":"$Q10"}]]
-0:{"t":{"t":{"s":"","h":80,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/Filial-montpellier/_next/static/chunks/26x8nhlmwai7r.css","precedence":"next"}],["$","script","script-0",{"src":"/Filial-montpellier/_next/static/chunks/1id-apzz-yyys.js","async":true}],["$","script","script-1",{"src":"/Filial-montpellier/_next/static/chunks/24aehl23xh8ba.js","async":true}]],["$","html",null,{"lang":"es","className":"_3FYCZa_variable UjWl8q_variable h-full antialiased","children":["$","body",null,{"className":"min-h-full","children":["$","$L4",null,{"children":["$","$L5",null,{"parallelRouterKey":"children","template":["$","$L6",null,{}],"notFound":[["$","$L8",null,{}],[]]}]}]}]}]]}],"p":"$@9","v":null,"s":"$a"},"c":"$Qb"},"h":{"r":["$","$1","h",{"children":[null,["$","$L1e",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#001025"}]]}],["$","$L20",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$16",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Filial Argentina · Montpellier Handball"}],["$","meta","1",{"name":"description","content":"Proyecto de detección y formación de talentos en Argentina para el Montpellier Handball. Propuesta de DS CONNECT."}],["$","link","2",{"rel":"icon","href":"/Filial-montpellier/icon.svg?icon.163i5bj-6gdpm.svg","sizes":"any","type":"image/svg+xml"}],["$","$L21","3",{}]]}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":"$@22","v":null,"s":"$a"}},"a":"$@23","u":"$@24","b":"kgeFGFuy3R0nKntRz4rVQ"}
+b:[["children",{"s":"(platform)","h":96,"d":{"r":["$","$1","c",{"children":[[["$","script","script-0",{"src":"/Filial-montpellier/_next/static/chunks/3mk6812klql1s.js","async":true}],["$","script","script-1",{"src":"/Filial-montpellier/_next/static/chunks/454cpv7u3hqnf.js","async":true}]],["$","$Le",null,{"children":["$","$L5",null,{"parallelRouterKey":"children","template":["$","$L6",null,{}],"notFound":[["$","$L8",null,{}],[]]}]}]]}],"p":"$@f","v":null,"s":"$a"},"c":"$Q10"}]]
+0:{"t":{"t":{"s":"","h":80,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/Filial-montpellier/_next/static/chunks/0on1y8lesli80.css","precedence":"next"}],["$","script","script-0",{"src":"/Filial-montpellier/_next/static/chunks/0o62065v9xp5c.js","async":true}],["$","script","script-1",{"src":"/Filial-montpellier/_next/static/chunks/2xre235m2xge4.js","async":true}]],["$","html",null,{"lang":"es","className":"_3FYCZa_variable UjWl8q_variable h-full antialiased","children":["$","body",null,{"className":"min-h-full","children":["$","$L4",null,{"children":["$","$L5",null,{"parallelRouterKey":"children","template":["$","$L6",null,{}],"notFound":[["$","$L8",null,{}],[]]}]}]}]}]]}],"p":"$@9","v":null,"s":"$a"},"c":"$Qb"},"h":{"r":["$","$1","h",{"children":[null,["$","$L1e",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#001025"}]]}],["$","$L20",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$16",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Filial Argentina · Montpellier Handball"}],["$","meta","1",{"name":"description","content":"Proyecto de detección y formación de talentos en Argentina para el Montpellier Handball."}],["$","link","2",{"rel":"icon","href":"/Filial-montpellier/icon.svg?icon.163i5bj-6gdpm.svg","sizes":"any","type":"image/svg+xml"}],["$","$L21","3",{}]]}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":"$@22","v":null,"s":"$a"}},"a":"$@23","u":"$@24","b":"lkN4SczVbs5CgZhEWO9wF"}
 1b:null
 a:300
 24:true
